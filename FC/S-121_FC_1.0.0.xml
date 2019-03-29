@@ -369,9 +369,64 @@
                 </S100FC:listedValue>
             </S100FC:listedValues>
         </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>spatialSourceType</S100FC:name>
+            <S100FC:definition>The type of spatial source</S100FC:definition>
+            <S100FC:code>spatialSourceType</S100FC:code>
+            <S100FC:alias>SPASRC</S100FC:alias>
+            <S100FC:valueType>enumeration</S100FC:valueType>
+            <S100FC:listedValues>
+                <S100FC:listedValue>
+                    <S100FC:label>Field Sketch</S100FC:label>
+                    <S100FC:definition>Field Sketch</S100FC:definition>
+                    <S100FC:code>1</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>GNSS Survey</S100FC:label>
+                    <S100FC:definition>GNSS Survey</S100FC:definition>
+                    <S100FC:code>2</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Relative Measurement</S100FC:label>
+                    <S100FC:definition>Relative Measurement</S100FC:definition>
+                    <S100FC:code>3</S100FC:code>
+                    <S100FC:remarks/>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Orthographic Photo</S100FC:label>
+                    <S100FC:definition>Orthographic Photo</S100FC:definition>
+                    <S100FC:code>4</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Satellite Imagery</S100FC:label>
+                    <S100FC:definition>Satellite imagery</S100FC:definition>
+                    <S100FC:code>5</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Topographic Map</S100FC:label>
+                    <S100FC:definition>Topographic Map</S100FC:definition>
+                    <S100FC:code>6</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Lidar Survey</S100FC:label>
+                    <S100FC:definition>Lidar Survey</S100FC:definition>
+                    <S100FC:code>7</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Video</S100FC:label>
+                    <S100FC:definition>Video</S100FC:definition>
+                    <S100FC:code>8</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Hydrographic Chart</S100FC:label>
+                    <S100FC:definition>Hydrographic Chart</S100FC:definition>
+                    <S100FC:code>9</S100FC:code>
+                </S100FC:listedValue>
+            </S100FC:listedValues>
+        </S100FC:S100_FC_SimpleAttribute>
 
         <S100FC:S100_FC_SimpleAttribute>
-            <S100FC:name>SourceAvailabilityStatus</S100FC:name>
+            <S100FC:name>sourceAvailabilityStatus</S100FC:name>
             <S100FC:definition>The source availability status</S100FC:definition>
             <S100FC:code>sourceAvailabilityStatus</S100FC:code>
             <S100FC:alias>SRCAVA</S100FC:alias>
@@ -407,8 +462,57 @@
                 </S100FC:listedValue>
             </S100FC:listedValues>
         </S100FC:S100_FC_SimpleAttribute>
-
-	</S100FC:S100_FC_SimpleAttributes>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Administrative Date Stamp</S100FC:name>
+            <S100FC:definition>Administrative Date Stamp</S100FC:definition>
+            <S100FC:code>administrativeDateStamp</S100FC:code>
+            <S100FC:remarks/>
+            <S100FC:alias>ADMDAT</S100FC:alias>
+            <S100FC:valueType>S100_TruncatedDate</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Authoritative Date</S100FC:name>
+            <S100FC:definition>Authoritative Date</S100FC:definition>
+            <S100FC:code>authoritativeDate</S100FC:code>
+            <S100FC:valueType>S100_TruncatedDate</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Source Document Type</S100FC:name>
+            <S100FC:definition>Source Document Type</S100FC:definition>
+            <S100FC:code>sourceDocumentType</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Source Type</S100FC:name>
+            <S100FC:definition>Source Type</S100FC:definition>
+            <S100FC:code>sourceType</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Source Submission Date</S100FC:name>
+            <S100FC:definition>Source Submission Date</S100FC:definition>
+            <S100FC:code>sourceSubmissionDate</S100FC:code>
+            <S100FC:valueType>S100_TruncatedDate</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Source Recordation Date</S100FC:name>
+            <S100FC:definition>Source Recordation Date</S100FC:definition>
+            <S100FC:code>sourceRecordationDate</S100FC:code>
+            <S100FC:valueType>S100_TruncatedDate</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Source Document Name</S100FC:name>
+            <S100FC:definition>Source Document Name</S100FC:definition>
+            <S100FC:code>sourceDocumentName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Source Registry Number</S100FC:name>
+            <S100FC:definition>Source Registry number</S100FC:definition>
+            <S100FC:code>sourceRegistryNumber</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+    </S100FC:S100_FC_SimpleAttributes>
 	
     <S100FC:S100_FC_ComplexAttributes>
         <!-- All Complex Attributes -->
@@ -601,10 +705,47 @@
 			</S100FC:attributeBinding>
 		</S100FC:S100_FC_InformationType>
 
+
         <S100FC:S100_FC_InformationType isAbstract="false">
             <S100FC:name>Source</S100FC:name>
             <S100FC:definition>The source definition for an MLB geo feature or information type</S100FC:definition>
             <S100FC:code>Source</S100FC:code>
+
+            <S100FC:attributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceDocumentName"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceRegistryNumber"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceAvailabilityStatus"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="administrativeSourceType"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="spatialSourceType"/>
+            </S100FC:attributeBinding>
             <S100FC:attributeBinding sequential="false">
                 <S100FC:multiplicity>
                     <S100Base:lower>1</S100Base:lower>
@@ -618,6 +759,48 @@
                     <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
                 </S100FC:multiplicity>
                 <S100FC:attribute ref="onlineResource"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="administrativeDateStamp"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="authoritativeDate"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceDocumentType"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceType"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceSubmissionDate"/>
+            </S100FC:attributeBinding>
+            <S100FC:attributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceRecordationDate"/>
             </S100FC:attributeBinding>
         </S100FC:S100_FC_InformationType>
     
