@@ -1,2 +1,5 @@
-# S-121
-being a repository of various S-121 bits and pieces....
+# S-121 Feature Catalogue.
+
+Prototype version of feature catalogue. Not based on what's in IHO registry (yet!).
+
+## 
