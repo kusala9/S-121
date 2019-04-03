@@ -15,6 +15,11 @@
 	<!-- 
 	    JP - info.
 	    Version - 039 - info types, source, 
+	    Version - 041 - more info types, source created
+	    Version - 042 - Responsible party additions...
+	    Version - 044 - finished Source. Moving onto LADM extensions.
+	    Version - 045 - Fixed name multiplicity
+	    
 		 -->
 		<S100FC:S100_FC_SimpleAttribute>
 	        <S100FC:name>Point Type</S100FC:name>
@@ -512,13 +517,207 @@
             <S100FC:code>sourceRegistryNumber</S100FC:code>
             <S100FC:valueType>text</S100FC:valueType>
         </S100FC:S100_FC_SimpleAttribute>
+        
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Address Delivery Point</S100FC:name>
+            <S100FC:definition>Address Delivery Point</S100FC:definition>
+            <S100FC:code>addressDeliveryPoint</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+<S100FC:S100_FC_SimpleAttribute>
+    <S100FC:name>Address City</S100FC:name>
+    <S100FC:definition>Address City</S100FC:definition>
+    <S100FC:code>addressCity</S100FC:code>
+    <S100FC:valueType>text</S100FC:valueType>
+</S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Address Administrative Area</S100FC:name>
+            <S100FC:definition>Address Administrative Area</S100FC:definition>
+            <S100FC:code>addressAdministrativeArea</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Address Postcode</S100FC:name>
+            <S100FC:definition>Address postcode</S100FC:definition>
+            <S100FC:code>addressPostcode</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Address Country</S100FC:name>
+            <S100FC:definition>Address Country</S100FC:definition>
+            <S100FC:code>addressCountry</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Address Email Address</S100FC:name>
+            <S100FC:definition>Address Email Address</S100FC:definition>
+            <S100FC:code>addressEmailAddress</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Contact Phone Number</S100FC:name>
+            <S100FC:definition>Contact Phone Number</S100FC:definition>
+            <S100FC:code>contactPhoneNumber</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Responsible Party Individual Name</S100FC:name>
+            <S100FC:definition>Responsible Party Individual Name</S100FC:definition>
+            <S100FC:code>responsiblePartyIndividualName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Responsible Party Organisation Name</S100FC:name>
+            <S100FC:definition>Responsible Party Organisational Name</S100FC:definition>
+            <S100FC:code>responsiblePartyOrganisationName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Responsible Party Position Name</S100FC:name>
+            <S100FC:definition>Responsible Party Position Name</S100FC:definition>
+            <S100FC:code>responsiblePartyPositionName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        
+        <!-- responsible party structures -->
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Individual Name</S100FC:name>
+            <S100FC:definition>Individual Name</S100FC:definition>
+            <S100FC:code>individualName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Organisation Name</S100FC:name>
+            <S100FC:definition>Organisation Name</S100FC:definition>
+            <S100FC:code>organisationName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Position Name</S100FC:name>
+            <S100FC:definition>Position Name</S100FC:definition>
+            <S100FC:code>positionName</S100FC:code>
+            <S100FC:valueType>text</S100FC:valueType>
+        </S100FC:S100_FC_SimpleAttribute>
+        <S100FC:S100_FC_SimpleAttribute>
+            <S100FC:name>Organisational Role</S100FC:name>
+            <S100FC:definition>Organisational Role</S100FC:definition>
+            <S100FC:code>organisationalRole</S100FC:code>
+            <S100FC:alias>ORGRLE</S100FC:alias>
+            <S100FC:valueType>enumeration</S100FC:valueType>
+            <S100FC:listedValues>
+                <S100FC:listedValue>
+                    <S100FC:label>Resource Provider</S100FC:label>
+                    <S100FC:definition>Resource Provider</S100FC:definition>
+                    <S100FC:code>1</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Custodian</S100FC:label>
+                    <S100FC:definition>Custodian</S100FC:definition>
+                    <S100FC:code>2</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Owner</S100FC:label>
+                    <S100FC:definition>Owner</S100FC:definition>
+                    <S100FC:code>3</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>User</S100FC:label>
+                    <S100FC:definition>User</S100FC:definition>
+                    <S100FC:code>4</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Distributor</S100FC:label>
+                    <S100FC:definition>Distributor</S100FC:definition>
+                    <S100FC:code>5</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Originator</S100FC:label>
+                    <S100FC:definition>Originator</S100FC:definition>
+                    <S100FC:code>6</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Point Of Contact</S100FC:label>
+                    <S100FC:definition>Point of Contact</S100FC:definition>
+                    <S100FC:code>7</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Principal Investigator</S100FC:label>
+                    <S100FC:definition>Principal Investigator</S100FC:definition>
+                    <S100FC:code>8</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Processor</S100FC:label>
+                    <S100FC:definition>Processor</S100FC:definition>
+                    <S100FC:code>9</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Publisher</S100FC:label>
+                    <S100FC:definition>Publisher</S100FC:definition>
+                    <S100FC:code>10</S100FC:code>
+                </S100FC:listedValue>
+                <S100FC:listedValue>
+                    <S100FC:label>Author</S100FC:label>
+                    <S100FC:definition>Author</S100FC:definition>
+                    <S100FC:code>11</S100FC:code>
+                </S100FC:listedValue>
+            </S100FC:listedValues>
+        </S100FC:S100_FC_SimpleAttribute>
+        
     </S100FC:S100_FC_SimpleAttributes>
 	
     <S100FC:S100_FC_ComplexAttributes>
         <!-- All Complex Attributes -->
         
-	    <S100FC:S100_FC_ComplexAttribute>
-	        <S100FC:name>onlineResource</S100FC:name>
+        <S100FC:S100_FC_ComplexAttribute>
+            <S100FC:name>Source Address</S100FC:name>
+            <S100FC:definition>Source Address</S100FC:definition>
+            <S100FC:code>sourceAddress</S100FC:code>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="addressDeliveryPoint"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="addressCity"/>
+            </S100FC:subAttributeBinding>            
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="addressAdministrativeArea"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="addressPostcode"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="addressCountry"/>
+            </S100FC:subAttributeBinding>
+                <S100FC:subAttributeBinding>
+                    <S100FC:multiplicity>
+                        <S100Base:lower>0</S100Base:lower>
+                        <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                    </S100FC:multiplicity>
+                    <S100FC:attribute ref="addressEmailAddress"/>
+                </S100FC:subAttributeBinding>
+
+        </S100FC:S100_FC_ComplexAttribute>
+        <S100FC:S100_FC_ComplexAttribute>
+	        <S100FC:name>Online Resource</S100FC:name>
 	        <S100FC:definition>Specifies an online resource (URL etc)</S100FC:definition>
 	        <S100FC:code>onlineResource</S100FC:code>
 	        <S100FC:subAttributeBinding sequential="false">
@@ -564,8 +763,6 @@
 	            <S100FC:attribute ref="onlineResourceFunction"/>
 	        </S100FC:subAttributeBinding>
 	    </S100FC:S100_FC_ComplexAttribute>
-	    
-	    
 	    
 	    <S100FC:S100_FC_ComplexAttribute>
 			<S100FC:name>Feature Name</S100FC:name>
@@ -613,7 +810,73 @@
 				<S100FC:attribute ref="endLifespan"/>
 			</S100FC:subAttributeBinding>
 		</S100FC:S100_FC_ComplexAttribute>
-	</S100FC:S100_FC_ComplexAttributes>
+        <S100FC:S100_FC_ComplexAttribute>
+            <S100FC:name>Source Contact</S100FC:name>
+            <S100FC:definition>Source Contact</S100FC:definition>
+            <S100FC:code>sourceContact</S100FC:code>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="contactPhoneNumber"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceAddress"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="onlineResource"/>
+            </S100FC:subAttributeBinding>
+        </S100FC:S100_FC_ComplexAttribute>
+        <S100FC:S100_FC_ComplexAttribute>
+            <S100FC:name>Responsible Party</S100FC:name>
+            <S100FC:definition>Responsible Party</S100FC:definition>
+            <S100FC:code>responsibleParty</S100FC:code>
+            <S100FC:subAttributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="responsiblePartyIndividualName"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="responsiblePartyOrganisationName"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="responsiblePartyPositionName"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="organisationalRole"/>
+            </S100FC:subAttributeBinding>
+            <S100FC:subAttributeBinding sequential="false">
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="sourceContact"/>
+            </S100FC:subAttributeBinding>
+        </S100FC:S100_FC_ComplexAttribute>
+    </S100FC:S100_FC_ComplexAttributes>
 
 <!-- roles -->
 	<S100FC:S100_FC_Roles>
@@ -711,6 +974,13 @@
             <S100FC:definition>The source definition for an MLB geo feature or information type</S100FC:definition>
             <S100FC:code>Source</S100FC:code>
 
+            <S100FC:attributeBinding>
+                <S100FC:multiplicity>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                </S100FC:multiplicity>
+                <S100FC:attribute ref="responsibleParty"/>
+            </S100FC:attributeBinding>
             <S100FC:attributeBinding>
                 <S100FC:multiplicity>
                     <S100Base:lower>0</S100Base:lower>
@@ -1742,8 +2012,8 @@
             </S100FC:attributeBinding>
             <S100FC:attributeBinding sequential="false">
                 <S100FC:multiplicity>
-					<S100Base:lower>0</S100Base:lower>
-					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+                    <S100Base:lower>0</S100Base:lower>
+                    <S100Base:upper xsi:nil="true" infinite="true"/>
                 </S100FC:multiplicity>
                 <S100FC:attribute ref="featureName"/>
             </S100FC:attributeBinding>
@@ -1822,7 +2092,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2072,7 +2342,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2160,13 +2430,13 @@
                 </S100FC:multiplicity>
                 <S100FC:attribute ref="collectionName"/>
             </S100FC:attributeBinding>
-            <S100FC:attributeBinding sequential="false">
-                <S100FC:multiplicity>
-					<S100Base:lower>0</S100Base:lower>
-					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
-                </S100FC:multiplicity>
-                <S100FC:attribute ref="featureName"/>
-            </S100FC:attributeBinding>
+		    <S100FC:attributeBinding sequential="false">
+		        <S100FC:multiplicity>
+		            <S100Base:lower>0</S100Base:lower>
+		            <S100Base:upper xsi:nil="true" infinite="true"/>
+		        </S100FC:multiplicity>
+		        <S100FC:attribute ref="featureName"/>
+		    </S100FC:attributeBinding>
             <S100FC:attributeBinding sequential="false">
                 <S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
@@ -2239,13 +2509,13 @@
                 </S100FC:multiplicity>
                 <S100FC:attribute ref="collectionName"/>
             </S100FC:attributeBinding>
-            <S100FC:attributeBinding sequential="false">
-                <S100FC:multiplicity>
-					<S100Base:lower>0</S100Base:lower>
-					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
-                </S100FC:multiplicity>
-                <S100FC:attribute ref="featureName"/>
-            </S100FC:attributeBinding>
+		    <S100FC:attributeBinding sequential="false">
+		        <S100FC:multiplicity>
+		            <S100Base:lower>0</S100Base:lower>
+		            <S100Base:upper xsi:nil="true" infinite="true"/>
+		        </S100FC:multiplicity>
+		        <S100FC:attribute ref="featureName"/>
+		    </S100FC:attributeBinding>
             <S100FC:attributeBinding sequential="false">
                 <S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
@@ -2318,13 +2588,13 @@
                 </S100FC:multiplicity>
                 <S100FC:attribute ref="collectionName"/>
             </S100FC:attributeBinding>
-            <S100FC:attributeBinding sequential="false">
-                <S100FC:multiplicity>
-					<S100Base:lower>0</S100Base:lower>
-					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
-                </S100FC:multiplicity>
-                <S100FC:attribute ref="featureName"/>
-            </S100FC:attributeBinding>
+		    <S100FC:attributeBinding sequential="false">
+		        <S100FC:multiplicity>
+		            <S100Base:lower>0</S100Base:lower>
+		            <S100Base:upper xsi:nil="true" infinite="true"/>
+		        </S100FC:multiplicity>
+		        <S100FC:attribute ref="featureName"/>
+		    </S100FC:attributeBinding>
             <S100FC:attributeBinding sequential="false">
                 <S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
@@ -2398,11 +2668,11 @@
 	            <S100FC:attribute ref="collectionName"/>
 	        </S100FC:attributeBinding>
 	        <S100FC:attributeBinding sequential="false">
-	            <S100FC:multiplicity>
-	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
-	            </S100FC:multiplicity>
-	            <S100FC:attribute ref="featureName"/>
+	                <S100FC:multiplicity>
+	                    <S100Base:lower>0</S100Base:lower>
+	                    <S100Base:upper xsi:nil="true" infinite="true"/>
+	                </S100FC:multiplicity>
+	                <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
@@ -2479,7 +2749,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2558,7 +2828,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2637,7 +2907,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2716,7 +2986,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2795,7 +3065,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
@@ -2873,7 +3143,7 @@
 	        <S100FC:attributeBinding sequential="false">
 	            <S100FC:multiplicity>
 	                <S100Base:lower>0</S100Base:lower>
-	                <S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+	                <S100Base:upper xsi:nil="true" infinite="true"/>
 	            </S100FC:multiplicity>
 	            <S100FC:attribute ref="featureName"/>
 	        </S100FC:attributeBinding>
