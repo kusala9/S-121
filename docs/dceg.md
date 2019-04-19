@@ -2,9 +2,10 @@
 
 autogen page of tables showing each of the features and attribute types.
 
+Go to [International Boundary](#InternationalBoundary)
+
+
 ##Features
-
-
 
 ### Baseline
 
@@ -115,7 +116,7 @@ autogen page of tables showing each of the features and attribute types.
 |releasabilityType | 0-1 |
 |interpolationType | 0-1 |
 
-
+<a name="InternationalBoundary"></a>
 ### International Boundary
 
 | International Boundary( INTBND ) | curve|
