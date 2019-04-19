@@ -9,6 +9,45 @@ autogen page of tables showing each of the features and attribute types.
 
 ##Features
 
+
+* [Baseline](\#baseline)
+* [Normal Baseline](\#normal-baseline)
+* [Straight Baseline](\#straight-baseline)
+* [Archipelagic Baseline](\#archipelagic-baseline)
+* [Low Tide Elevation Baseline](\#low-tide-elevation-baseline)
+* [Mouth Of Rivers Baseline](\#mouth-of-rivers-baseline)
+* [Bay Closing Baseline](\#bay-closing-baseline)
+* [Port Baseline](\#port-baseline)
+* [Reef Baseline](\#reef-baseline)
+* [Boundary](\#boundary)
+* [International Boundary](\#international-boundary)
+* [Limit](\#limit)
+* [Outer Limit of the Territorial Sea](\#outer-limit-of-the-territorial-sea)
+* [Outer Limit of the Contiguous Zone](\#outer-limit-of-the-contiguous-zone)
+* [Outer Limit of the Exclusive Economic Zone](\#outer-limit-of-the-exclusive-economic-zone)
+* [Outer Limit of the Continental Shelf](\#outer-limit-of-the-continental-shelf)
+* [Outer Limit of the Roadstead](\#outer-limit-of-the-roadstead)
+* [Construction Line](\#construction-line)
+* [Baseline Point](\#baseline-point)
+* [Limit Point](\#limit-point)
+* [Boundary Point](\#boundary-point)
+* [Location](\#location)
+* [Contributing Point](\#contributing-point)
+* [Zone](\#zone)
+* [Territorial Sea](\#territorial-sea)
+* [Contiguous Zone](\#contiguous-zone)
+* [Exclusive Economic Zone](\#exclusive-economic-zone)
+* [Continental Shelf](\#continental-shelf)
+* [Roadstead](\#roadstead)
+* [Internal Waters](\#internal-waters)
+* [The Area](\#the-area)
+* [High Seas](\#high-seas)
+* [Archipelagic Waters](\#archipelagic-waters)
+* [Strait](\#strait)
+##Features
+
+
+
 ### Baseline
 
 | Baseline( BASELN ) | curve|
@@ -118,7 +157,7 @@ autogen page of tables showing each of the features and attribute types.
 |releasabilityType | 0-1 |
 |interpolationType | 0-1 |
 
-<a name="InternationalBoundary"></a>
+
 ### International Boundary
 
 | International Boundary( INTBND ) | curve|
@@ -207,9 +246,9 @@ autogen page of tables showing each of the features and attribute types.
 |interpolationType | 0-1 |
 
 
-### Base Point
+### Baseline Point
 
-| Base Point( BASEPT ) | point|
+| Baseline Point( BASEPT ) | point|
 |-------|------|
 |label | 0-1 |
 |collectionName | 0-1 |
@@ -423,5 +462,6 @@ autogen page of tables showing each of the features and attribute types.
 |endLifespan | 0-1 |
 |legalStatus | 0-1 |
 |releasabilityType | 0-1 |
+
 
 Process finished with exit code 0
