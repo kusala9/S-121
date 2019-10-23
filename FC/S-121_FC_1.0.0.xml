@@ -12,10 +12,8 @@
     <S100FC:versionNumber>1.0.0.46</S100FC:versionNumber>
     <S100FC:versionDate>2019-04-20</S100FC:versionDate>
     <S100FC:producer>
-        <S100CI:individualName>IIC Technologies</S100CI:individualName>
-        <S100CI:organisationName>IHO</S100CI:organisationName>
-        <S100CI:positionName>Member</S100CI:positionName>
         <S100CI:role>custodian</S100CI:role>
+        <S100CI:party></S100CI:party>
     </S100FC:producer>
     <S100FC:S100_FC_SimpleAttributes>
         <!-- 
