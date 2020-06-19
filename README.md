@@ -1,2 +1,3 @@
 # S-121
-being a repository of various S-121 bits and pieces....
+
+Development of IHO S-121. Feature Catalogue, Example data and GML Schemas + Documentation
