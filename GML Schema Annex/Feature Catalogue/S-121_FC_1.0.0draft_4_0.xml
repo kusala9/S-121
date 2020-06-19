@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<S100FC:S100_FC_FeatureCatalogue xmlns:S100FC="http://www.iho.int/S100FC" xmlns:S100Base="http://www.iho.int/S100Base" xmlns:S100CI="http://www.iho.int/S100CI" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:S100FD="http://www.iho.int/S100FD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+<S100FC:S100_FC_FeatureCatalogue xmlns:S100FC="http://www.iho.int/S100FC" 
+	xmlns:S100Base="http://www.iho.int/S100Base" 
+	xmlns:S100CI="http://www.iho.int/S100CI" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:S100FD="http://www.iho.int/S100FD" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	
 	<S100FC:name>S121 Feature Catalogue (OGC MLB Draft)</S100FC:name>
 	<S100FC:scope>Global</S100FC:scope>
 	<S100FC:fieldOfApplication>Maritime Limits</S100FC:fieldOfApplication>
@@ -42,6 +48,8 @@
 	    Version - 042 - Responsible party additions...
 	    Version - 044 - finished Source. Moving onto LADM extensions.
 	    Version - 045 - Fixed name multiplicity
+	    Version - 046 - From Hugh A at Caris. Draft reflecting v4.0 of GML Schema.
+	    Version - 047 - JP, modified with OGC PP outputs following close of pilot project.
 	    
 		 -->
 		<S100FC:S100_FC_SimpleAttribute>
