@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.iho.int/S-121" xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:s100_profile="http://www.iho.int/S-100/profile/s100_gmlProfile"
+    xmlns:gmlce="http://www.opengis.net/gml/3.3/ce" targetNamespace="http://www.iho.int/S-121"
+    elementFormDefault="qualified" version="1.0" xmlns:s100="http://www.iho.int/s100gml/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:import namespace="http://www.opengis.net/gml/3.2"
+        schemaLocation="https://raw.githubusercontent.com/IHO-S100WG/S100-Schemas/master/S100%20Edition%204.0.0%20Schemas/schemas/S100/4.0.0/S100GML/20180502/S100_gmlProfile.xsd"
+        id="s100"/>
+
+    <xs:import namespace="http://www.iho.int/s100gml/1.0"
+        schemaLocation="https://raw.githubusercontent.com/IHO-S100WG/S100-Schemas/master/S100%20Edition%204.0.0%20Schemas/schemas/S100/4.0.0/S100GML/20180502/s100gmlbase.xsd"
+        id="s100base"/>
+
+    <xs:import namespace="http://www.iho.int/S-100/profile/s100_gmlProfile"
+        schemaLocation="https://raw.githubusercontent.com/IHO-S100WG/S100-Schemas/master/S100%20Edition%204.0.0%20Schemas/schemas/S100/4.0.0/S100GML/20180502/S100_gmlProfileLevels.xsd"
+        id="s100profile"/>
+
+    <xs:annotation>
+        <xs:appinfo>
+            <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">
+                http://www.iho.int/S-100/profiles/s100_GMLProfile.xsd
+            </gmlProfileSchema>
+            <s100_profile:ComplianceLevel>1</s100_profile:ComplianceLevel>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <!-- From GML Schema in S-100 Edition 4.0.1 -->
+    <!--                                        -->
+    <!-- Updates.                               -->
+    <!--                                        -->
+
+
+    <!-- base types for all features in this data product -->
+    <xs:complexType name="geographicFeatureType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>base type for all Geographic Features, i.e. points, limits and boundaries. Also contains reference elements for information types common across all geographic features = source and BAU.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="s100:AbstractFeatureType">
+                <xs:sequence>
+                    <xs:element name="label" type="xs:string" minOccurs="0"/>
+                    <xs:element minOccurs="0" name="collectionName" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" name="featureName" type="featureNameType"
+                        minOccurs="0"/>
+                    <xs:element minOccurs="0" name="context" type="xs:string"/>
+                    <xs:element minOccurs="0" name="startLifespan" type="xs:date"/>
+                    <xs:element minOccurs="0" name="endLifespan" type="xs:date"/>
+                    <xs:element minOccurs="0" name="releasabilityType" type="releasabilityTypeType"/>
+                    <xs:element minOccurs="0" name="source" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>association to a SourceType information type which represents the source of the feature
+</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="administration" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>association with a BAU information type. Modified to unbounded for v4.0.1. Also diagram shows this as being called administrativeInformation - to be resolved.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element minOccurs="0" name="refersTo" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Association with additional spatial information information types. Used to associate a geogrpahic feature with an alternative (textual) description of its location.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                    <xs:element minOccurs="0" name="locationReference" type="locationReferenceType"
+                        maxOccurs="unbounded"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="componentOf"
+                        type="gml:ReferenceType">
+                        <xs:annotation>
+                            <xs:documentation>Generic association between geographic features</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="consistsOf"
+                        type="gml:ReferenceType">
+                        <xs:annotation>
+                            <xs:documentation>inverse generic association between geographic features</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="releasabilityTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Internal"/>
+            <xs:enumeration value="Official"/>
+            <xs:enumeration value="Controlled"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="featureNameType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="displayName" type="xs:boolean"/>
+            <xs:element name="Language" type="xs:string"/>
+            <xs:element name="Name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="arcGeometryTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="geodesic"/>
+            <xs:enumeration value="loxodrome"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="locationType">
+        <xs:annotation>
+            <xs:documentation>base type for all Point location features in S-121.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="geographicFeatureType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="interpolationType">
+                        <xs:annotation>
+                            <xs:documentation>interpolation role (and pointType) are both from the S-121 model and only included in point features.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="deflection"/>
+                                <xs:enumeration value="densification"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="pointType" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="defined"/>
+                                <xs:enumeration value="computed"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="geometry" type="gml:PointPropertyType">
+                        <xs:annotation>
+                            <xs:documentation>We're using the gml:PointPropertyType becasue the S-100 namespace isn't recognised as a geometry column by the GDAL GMLAS driver.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="limitType">
+        <xs:annotation>
+            <xs:documentation>base type for all Baseline, Limit and Boundary geographic features
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="geographicFeatureType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arcGeometryType" type="arcGeometryTypeType"/>
+                    <xs:element minOccurs="0" name="geometry" type="gml:CurvePropertyType">
+                        <xs:annotation>
+                            <xs:documentation>if you want inline geometry (which can be read by QGIS!)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="zoneType">
+        <xs:annotation>
+            <xs:documentation>base type for all zone features
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="geographicFeatureType">
+                <xs:sequence>
+                    <xs:element name="jurisdictionDomain" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="airspace"/>
+                                <xs:enumeration value="landsurface"/>
+                                <xs:enumeration value="watersurface"/>
+                                <xs:enumeration value="watercolumn"/>
+                                <xs:enumeration value="seabedsurface"/>
+                                <xs:enumeration value="subsoil"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="geometry" type="gml:SurfacePropertyType">
+                        <xs:annotation>
+                            <xs:documentation>if you want inline geometry (which can be read by QGIS!)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="BaselinePoint" type="locationType"/>
+    <xs:element name="LimitPoint" type="locationType"/>
+    <xs:element name="BoundaryPoint" type="locationType"/>
+    <xs:element name="ContributingPoint" type="locationType"/>
+    <xs:element name="Location" type="locationType"/>
+
+    <xs:element name="Baseline" type="limitType"/>
+    <xs:element name="NormalBaseline" type="limitType"/>
+    <xs:element name="StraightBaseline" type="limitType"/>
+    <xs:element name="ArchipelagicBaseline" type="limitType"/>
+    <xs:element name="LowTideElevationBaseline" type="limitType"/>
+    <xs:element name="MouthOfRiversBaseline" type="limitType"/>
+    <xs:element name="BayBaseline" type="limitType"/>
+    <xs:element name="PortBaseline" type="limitType"/>
+    <xs:element name="ReefBaseline" type="limitType"/>
+
+    <xs:element name="Boundary" type="limitType"/>
+    <xs:element name="InternationalBoundary" type="limitType"/>
+
+    <xs:element name="Limit" type="limitType"/>
+    <xs:element name="OuterLimitOfTheTerritorialSea" type="limitType"/>
+    <xs:element name="OuterLimitOfTheContiguousZone" type="limitType"/>
+    <xs:element name="OuterLimitOfTheExclusiveEconomicZone" type="limitType"/>
+    <xs:element name="OuterLimitOfTheContinentalShelf" type="limitType"/>
+    <xs:element name="OuterLimitOfTheRoadstead" type="limitType"/>
+    <xs:element name="ConstructionLine" type="limitType"/>
+
+    <xs:element name="Zone" type="zoneType"/>
+    <xs:element name="TerritorialSea" type="zoneType"/>
+    <xs:element name="ContiguousZone" type="zoneType"/>
+    <xs:element name="ExclusiveEconomicZone" type="zoneType"/>
+    <xs:element name="ContinentalShelf" type="zoneType"/>
+    <xs:element name="Roadstead" type="zoneType"/>
+    <xs:element name="InternalWaters" type="zoneType"/>
+    <xs:element name="TheArea" type="zoneType"/>
+    <xs:element name="HighSeas" type="zoneType"/>
+    <xs:element name="ArchipelagicWaters" type="zoneType"/>
+    <xs:element name="Strait" type="zoneType"/>
+
+    <xs:group name="Features">
+        <xs:choice>
+            <xs:element ref="BaselinePoint"/>
+            <xs:element ref="LimitPoint"/>
+            <xs:element ref="BoundaryPoint"/>
+            <xs:element ref="ContributingPoint"/>
+            <xs:element ref="Location"/>
+            <xs:element ref="Baseline"/>
+            <xs:element ref="NormalBaseline"/>
+            <xs:element ref="StraightBaseline"/>
+            <xs:element ref="ArchipelagicBaseline"/>
+            <xs:element ref="LowTideElevationBaseline"/>
+            <xs:element ref="MouthOfRiversBaseline"/>
+            <xs:element ref="BayBaseline"/>
+            <xs:element ref="PortBaseline"/>
+            <xs:element ref="ReefBaseline"/>
+            <xs:element ref="Boundary"/>
+            <xs:element ref="InternationalBoundary"/>
+            <xs:element ref="Limit"/>
+            <xs:element ref="OuterLimitOfTheTerritorialSea"/>
+            <xs:element ref="OuterLimitOfTheContiguousZone"/>
+            <xs:element ref="OuterLimitOfTheExclusiveEconomicZone"/>
+            <xs:element ref="OuterLimitOfTheContinentalShelf"/>
+            <xs:element ref="OuterLimitOfTheRoadstead"/>
+            <xs:element ref="ConstructionLine"/>
+            <xs:element ref="Zone"/>
+            <xs:element ref="TerritorialSea"/>
+            <xs:element ref="ContiguousZone"/>
+            <xs:element ref="ExclusiveEconomicZone"/>
+            <xs:element ref="ContinentalShelf"/>
+            <xs:element ref="Roadstead"/>
+            <xs:element ref="InternalWaters"/>
+            <xs:element ref="TheArea"/>
+            <xs:element ref="HighSeas"/>
+            <xs:element ref="ArchipelagicWaters"/>
+            <xs:element ref="Strait"/>
+            <xs:element ref="BasicAdministrativeUnit"/>
+            <xs:element ref="Right"/>
+            <xs:element ref="Restriction"/>
+            <xs:element ref="Responsibility"/>
+            <xs:element ref="Governance"/>
+            <xs:element ref="Source"/>
+            <xs:element ref="AdditionalSpatialInformation"/>
+            <xs:element ref="Party"/>
+            <xs:element ref="PartyMember"/>
+        </xs:choice>
+    </xs:group>
+
+    <!-- 
+        <xs:complexType name="Dataset">
+        <xs:complexContent>
+            <xs:extension base="s100:AbstractFeatureType">
+                <xs:sequence>
+                    <xs:group ref="InformationTypes" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:group ref="s100:Geometry" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:group ref="Features" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="dataset" type="Dataset"/>
+    -->
+
+    <xs:complexType name="informationType">
+        <xs:complexContent>
+            <xs:extension base="s100:AbstractInformationType">
+                <xs:sequence>
+
+                    <xs:element minOccurs="0" name="source" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>association to a SourceType information type which represents the source of the information type
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="componentOf"
+                        type="gml:ReferenceType">
+                        <xs:annotation>
+                            <xs:documentation>Generic association between information types</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="consistsOf"
+                        type="gml:ReferenceType">
+                        <xs:annotation>
+                            <xs:documentation>inverse generic association between information types</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="startLifespan" type="xs:date"/>
+                    <xs:element minOccurs="0" name="endLifespan" type="xs:date"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="responsiblePartyType">
+        <xs:sequence>
+            <xs:element name="responsiblePartyIndividualName" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="responsiblePartyOrganisationName" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="responsiblePartyPositionName" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="organisationalRole" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value=" Resource Provider">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    <xs:Name>Resource Provider</xs:Name>
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Custodian"/>
+                        <xs:enumeration value="Owner"/>
+                        <xs:enumeration value="User"/>
+                        <xs:enumeration value="Distributor"/>
+                        <xs:enumeration value="Originator"/>
+                        <xs:enumeration value="Point Of Contact"/>
+                        <xs:enumeration value="Principal Investigator"/>
+                        <xs:enumeration value="Processor"/>
+                        <xs:enumeration value="Publisher"/>
+                        <xs:enumeration value="Author"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="sourceContact" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="contactPhoneNumber" minOccurs="0" maxOccurs="1">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string"/>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="sourceAddress" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="addressDeliveryPoint" minOccurs="0"
+                                        maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="addressCity" minOccurs="0" maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="addressAdministrativeArea" minOccurs="0"
+                                        maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="addressPostcode" minOccurs="0" maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="addressCountry" minOccurs="0" maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="addressEmailAddress" minOccurs="0"
+                                        maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value=""/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="onlineResource" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="onlineResourceLinkageURL" minOccurs="0"
+                                        maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="onlineResourceProtocol" minOccurs="0"
+                                        maxOccurs="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="onlineResourceApplicationProfile"
+                                        minOccurs="1" maxOccurs="1" nillable="true">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="onlineResourceName" minOccurs="1"
+                                        maxOccurs="1" nillable="true">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="onlineResourceDescription" minOccurs="1"
+                                        maxOccurs="1" nillable="true">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string"/>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="onlineResourceFunction" minOccurs="1"
+                                        maxOccurs="1" nillable="true">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="1">
+                                                  <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>download</xs:Name>
+                                                        </xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:enumeration>
+                                                <xs:enumeration value="2">
+                                                  <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>information</xs:Name>
+                                                        </xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:enumeration>
+                                                <xs:enumeration value="3">
+                                                  <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>offlineAccess</xs:Name>
+                                                        </xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:enumeration>
+                                                <xs:enumeration value="4">
+                                                  <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>offlineAccess</xs:Name>
+                                                        </xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:enumeration>
+                                                <xs:enumeration value="5">
+                                                  <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>order</xs:Name>
+                                                        </xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:enumeration>
+                                                <xs:enumeration value="6">
+                                                  <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>search</xs:Name>
+                                                        </xs:documentation>
+                                                  </xs:annotation>
+                                                </xs:enumeration>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+
+
+    <xs:complexType name="sourceType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="responsibleParty" type="responsiblePartyType" minOccurs="0"/>
+                    <xs:element name="sourceDocumentName" type="xs:string" minOccurs="0"/>
+                    <xs:element name="sourceRegistryNumber" type="xs:string" minOccurs="0"/>
+                    <xs:element name="sourceAvailabilityStatus" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="Archive Converted"/>
+                                <xs:enumeration value="Archive Destroyed"/>
+                                <xs:enumeration value="Archive Incomplete"/>
+                                <xs:enumeration value="Archive Unknown"/>
+                                <xs:enumeration value="Document Available"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="administrativeSourceType" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="International Agreement"/>
+                                <xs:enumeration value="Domestic Legislative Instrument"/>
+                                <xs:enumeration value="Domestic Administrative"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="spatialSourceType" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="Field Sketch"/>
+                                <xs:enumeration value="GNSS Survey"/>
+                                <xs:enumeration value="Relative Measurement"/>
+                                <xs:enumeration value="Orthographic Photo"/>
+                                <xs:enumeration value="Satellite Imagery"/>
+                                <xs:enumeration value="Topographic Map"/>
+                                <xs:enumeration value="Lidar Survey"/>
+                                <xs:enumeration value="Video"/>
+                                <xs:enumeration value="Hydrographic Chart"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="label" type="xs:string" minOccurs="0"/>
+                    <xs:element name="onlineResource" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="onlineResourceLinkageURL" minOccurs="0"
+                                    maxOccurs="1">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string"/>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="onlineResourceProtocol" minOccurs="0"
+                                    maxOccurs="1">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string"/>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="onlineResourceApplicationProfile" minOccurs="1"
+                                    maxOccurs="1" nillable="true">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string"/>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="onlineResourceName" minOccurs="1" maxOccurs="1"
+                                    nillable="true">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string"/>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="onlineResourceDescription" minOccurs="1"
+                                    maxOccurs="1" nillable="true">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string"/>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="onlineResourceFunction" minOccurs="1"
+                                    maxOccurs="1" nillable="true">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="download">
+                                                <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>download</xs:Name>
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:enumeration>
+                                            <xs:enumeration value="information">
+                                                <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>information</xs:Name>
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:enumeration>
+                                            <xs:enumeration value="offlineAccess">
+                                                <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>offlineAccess</xs:Name>
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:enumeration>
+                                            <xs:enumeration value="order">
+                                                <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>offlineAccess</xs:Name>
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:enumeration>
+                                            <xs:enumeration value="search">
+                                                <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>order</xs:Name>
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:enumeration>
+                                            <xs:enumeration value="">
+                                                <xs:annotation>
+                                                  <xs:documentation>
+                                                            <xs:Name>search</xs:Name>
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                            </xs:enumeration>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="administrativeDateStamp" type="xs:date" minOccurs="0"/>
+                    <xs:element name="authoritativeDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="sourceDocumentType" type="xs:string" minOccurs="0"/>
+                    <xs:element name="sourceType" type="xs:string" minOccurs="0"/>
+                    <xs:element name="sourceSubmissionDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="sourceRecordationDate" type="xs:date" minOccurs="0"/>
+                    <xs:element minOccurs="0" name="sourceOf" type="gml:ReferenceType">
+                        <xs:annotation>
+                            <xs:documentation>binding between the source information type and its defining geographic feature(s)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="basicAdministrativeUnitTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Maritime Limits and Boundaries"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="InfofeatureNameType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="displayName" type="xs:boolean"/>
+            <xs:element name="language" type="xs:string"/>
+            <xs:element name="Name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="bauType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="featureName"
+                        type="featureNameType"/>
+                    <xs:element minOccurs="0" name="basicAdministrativeUnitName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="basicAdministrativeUnitType"
+                        type="basicAdministrativeUnitTypeType"/>
+                    <xs:element minOccurs="0" name="basicAdministrativeUnitContext" type="xs:string"/>
+                    <xs:element minOccurs="0" name="administrationOf" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>association between a BAU and its defining geographic feature(s)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="right" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                    <xs:element minOccurs="0" name="responsibility" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                    <xs:element minOccurs="0" name="restriction" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                    <xs:element minOccurs="0" name="party" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="additionalSpatialInformationType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="locationReference"
+                        type="locationReferenceType"/>
+
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="identifies"
+                        type="gml:ReferenceType">
+                        <xs:annotation>
+                            <xs:documentation>inverse generic association between geographic features</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- this is copied from the geographic feature attributes -->
+
+    <xs:complexType name="rightType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="categoryOfRight">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="sovereign"/>
+                                <xs:enumeration value="sovereignRight"/>
+                                <xs:enumeration value="accessRight"/>
+                                <xs:enumeration value="easementRight"/>
+                                <xs:enumeration value="harvestRight"/>
+                                <xs:enumeration value="contiguousRight"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="rrrDescription" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rrrShare" type="xs:double"/>
+                    <xs:element minOccurs="0" name="rrrTimespec" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="rightFor" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="restrictionType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="categoryOfRestriction">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="accessRestriction"/>
+                                <xs:enumeration value="jurisdictionRestriction"/>
+                                <xs:enumeration value="passageRestriction"/>
+                                <xs:enumeration value="resourceRestriction"/>
+                                <xs:enumeration value="timeBasedRestriction"/>
+                                <xs:enumeration value="useRestriction"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="rrrDescription" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rrrShare" type="xs:double"/>
+                    <xs:element minOccurs="0" name="rrrTimespec" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="restrictionFor" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="responsibilityType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="categoryOfResponsibility">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="maintenanceResponsibility"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="rrrDescription" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rrrShare" type="xs:double"/>
+                    <xs:element minOccurs="0" name="rrrTimespec" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="responsibilityFor" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="governanceType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="referenceNumber" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="featureName" type="InfofeatureNameType" minOccurs="0"
+                        maxOccurs="1"/>
+                    <xs:element name="governanceTitle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="governanceDescription" type="xs:string" minOccurs="0"
+                        maxOccurs="1"/>
+                    <xs:element name="releasabilityType" type="xs:string" minOccurs="0"
+                        maxOccurs="1"/>
+                    <xs:element name="dateApproved" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="dateConsidered" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="dateIntroduced" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                    <xs:element minOccurs="0" name="governanceOf" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>binding between a governance information type and a BAU information type</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="governanceFor" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>hierarchical binding between a governance information type and a BAU information type</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="partyType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="partyName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="partyRole" type="xs:string"/>
+                    <xs:element minOccurs="0" name="categoryOfParty">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="International Organisation"/>
+                                <xs:enumeration value="State Country"/>
+                                <xs:enumeration value="Province State"/>
+                                <xs:enumeration value="Non Natural Person"/>
+                                <xs:enumeration value="Natural Person"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="partyGroupType">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="Agreement"/>
+                                <xs:enumeration value="Association"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="partyGroup" type="xs:boolean"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="rrr"
+                        type="gml:ReferenceType"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="member"
+                        type="gml:ReferenceType"/>
+                    <xs:element minOccurs="0" name="group" type="gml:ReferenceType"
+                        maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="partyMemberType">
+        <xs:complexContent>
+            <xs:extension base="informationType">
+                <xs:sequence>
+                    <xs:element name="partyMembership" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="member" type="gml:ReferenceType"/>
+                    <xs:element minOccurs="0" name="group" type="gml:ReferenceType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="PartyMember" type="partyMemberType">
+        <xs:annotation>
+            <xs:documentation>This is the intermediate class between a party which is a group and a party whcih is a group member. It denotes a % membership in the group.
+</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="BasicAdministrativeUnit" type="bauType"/>
+    <xs:element name="Right" type="rightType"/>
+    <xs:element name="Restriction" type="restrictionType"/>
+    <xs:element name="Responsibility" type="responsibilityType"/>
+    <xs:element name="AdditionalSpatialInformation" type="additionalSpatialInformationType"/>
+    <xs:element name="Governance" type="governanceType"/>
+    <xs:element name="Source" type="sourceType" substitutionGroup="gml:AbstractGML"/>
+    <xs:element name="Party" type="partyType"/>
+    <xs:complexType name="CollectionType">
+        <xs:complexContent>
+            <xs:extension base="abstractFeature">
+
+                <xs:sequence>
+                    <xs:element name="metadata">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="DatasetIdentificationInformation"
+                                    type="s100:DataSetIdentificationType"/>
+                                <xs:element name="DatasetStructureInformation"
+                                    type="s100:DataSetStructureInformationType"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+
+                    <xs:group ref="s100:Geometry" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Allows spatial objects to be located outside feature objects (for references, and compatibility with ISO 8211 encoding)</xs:documentation>
+                        </xs:annotation>
+                    </xs:group>
+
+                    <xs:element name="members">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="gml:AbstractFeatureMemberType">
+
+                                    <xs:sequence>
+                                        <xs:group maxOccurs="unbounded" minOccurs="0" ref="Features"
+                                        />
+                                    </xs:sequence>
+
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="Dataset" type="CollectionType"/>
+    <xs:complexType name="abstractFeature">
+        <xs:complexContent>
+            <xs:extension base="gml:AbstractFeatureType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="locationReferenceType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="categoryOfLocation">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="AdditionalSpatialInformation"/>
+                        <xs:enumeration value="OriginalLocation"/>
+                        <xs:enumeration value="OfficialLocation"/>
+                        <xs:enumeration value="CommonLocation"/>
+                        <xs:enumeration value="GlobalLocation"/>
+                        <xs:enumeration value="WGS84Location"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="locationByText" type="xs:string"/>
+            <xs:element name="textLat" type="xs:string" minOccurs="0"/>
+            <xs:element minOccurs="0" name="textLon" type="xs:string"/>
+            <xs:element name="referenceSystem" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
