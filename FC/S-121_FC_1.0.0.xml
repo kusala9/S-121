@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <S100FC:S100_FC_FeatureCatalogue xmlns:S100FC="http://www.iho.int/S100FC"
-    xmlns:S100Base="http://www.iho.int/S100Base" 
-    xmlns:S100CI="http://www.iho.int/S100CI"
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
-    xmlns:S100FD="http://www.iho.int/S100FD"
+    xmlns:S100Base="http://www.iho.int/S100Base" xmlns:S100CI="http://www.iho.int/S100CI"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:S100FD="http://www.iho.int/S100FD"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.iho.int/S100FC S100FC.xsd">
     <S100FC:name>S121 Product Specification</S100FC:name>
@@ -13,7 +11,7 @@
     <S100FC:versionDate>2019-04-20</S100FC:versionDate>
     <S100FC:producer>
         <S100CI:role>custodian</S100CI:role>
-        <S100CI:party></S100CI:party>
+        <S100CI:party/>
     </S100FC:producer>
     <S100FC:S100_FC_SimpleAttributes>
         <!-- 
