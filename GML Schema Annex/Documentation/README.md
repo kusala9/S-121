@@ -11,9 +11,9 @@ Documentation for the GML Annex is contained here. This is built off the revised
 
 
 ## LADM Information Types
-![geospatial features](GeospatialFeatures.png)
+![geospatial features](LADM Features.png)
 
 
 
 ## Source
-![geospatial features](GeospatialFeatures.png)
+![geospatial features](Source.png)
