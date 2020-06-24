@@ -65,9 +65,12 @@
 	       9. Added schema location (can take out) for validation
 	       10. Tidied up camel case in onlineResource attribute names.
 	       11. Added Location Reference to all geospatial features.
-	       
-	       
-	       
+	       12. Supplementary information. I don't believe is needed. commented out.
+	       13. Multiplicity of locationReference in AdditionalSpatialInformation is 1..*]
+	       14. We don't need fixed date range. we have startLifespan/endLifespan in all features.
+	       15. Open question - I don't use isAbstract="false", should I?
+	       16. BAU - added featureName to allow multi-lingual Names to BAUs. should we drop basicAdministrativeUnitName?
+	       17. Added Start Lifespan / End lifespan in BAU and Governance
 	       
 	       
 		 -->
@@ -1144,7 +1147,7 @@
 				<S100FC:attribute ref="name"/>
 			</S100FC:subAttributeBinding>
 		</S100FC:S100_FC_ComplexAttribute>
-		<S100FC:S100_FC_ComplexAttribute>
+		<!--<S100FC:S100_FC_ComplexAttribute>
 			<S100FC:name>Fixed date range</S100FC:name>
 			<S100FC:definition>The complex attribute describes single fixed period, as the date range between its sub-attributes.</S100FC:definition>
 			<S100FC:code>fixedDateRange</S100FC:code>
@@ -1163,7 +1166,7 @@
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="endLifespan"/>
 			</S100FC:subAttributeBinding>
-		</S100FC:S100_FC_ComplexAttribute>
+		</S100FC:S100_FC_ComplexAttribute>-->
 		<S100FC:S100_FC_ComplexAttribute>
 			<S100FC:name>Source Contact</S100FC:name>
 			<S100FC:definition>Source Contact</S100FC:definition>
@@ -1487,6 +1490,27 @@
 			<S100FC:name>Basic Administrative Unit</S100FC:name>
 			<S100FC:definition>Basic Administrative Unit</S100FC:definition>
 			<S100FC:code>BasicAdministrativeUnit</S100FC:code>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="startLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="endLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="true" infinite="true"/>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="featureName"/>
+			</S100FC:attributeBinding>
 			<S100FC:attributeBinding>
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
@@ -1734,7 +1758,7 @@
 			<S100FC:code>AdditionalSpatialInformation</S100FC:code>
 			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
-					<S100Base:lower>0</S100Base:lower>
+					<S100Base:lower>1</S100Base:lower>
 					<S100Base:upper xsi:nil="true" infinite="true"/>
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="locationReference"/>
@@ -1749,7 +1773,7 @@
 				<S100FC:informationType ref="Source"/>
 			</S100FC:informationBinding>
 		</S100FC:S100_FC_InformationType>
-
+<!--
 		<S100FC:S100_FC_InformationType>
 			<S100FC:name>Supplementary information</S100FC:name>
 			<S100FC:definition>Information about a feature or a number of features additional to that able to be encoded using other feature attributes.</S100FC:definition>
@@ -1771,11 +1795,25 @@
 				<S100FC:informationType ref="Source"/>
 			</S100FC:informationBinding>
 		</S100FC:S100_FC_InformationType>
-
+-->
 		<S100FC:S100_FC_InformationType>
 			<S100FC:name>Governance</S100FC:name>
 			<S100FC:definition>Governance</S100FC:definition>
 			<S100FC:code>Governance</S100FC:code>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="startLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="endLifespan"/>
+			</S100FC:attributeBinding>
 			<S100FC:attributeBinding>
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
@@ -1790,10 +1828,10 @@
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="referenceNumber"/>
 			</S100FC:attributeBinding>
-			<S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
-					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+					<S100Base:upper xsi:nil="true" infinite="true"/>
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="featureName"/>
 			</S100FC:attributeBinding>
@@ -1953,28 +1991,28 @@
 			<S100FC:definition>The source definition for an MLB geo feature or information type</S100FC:definition>
 			<S100FC:code>Source</S100FC:code>
 
-			<S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
 					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="responsibleParty"/>
 			</S100FC:attributeBinding>
-			<S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
 					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="sourceDocumentName"/>
 			</S100FC:attributeBinding>
-			<S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
 					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
 				</S100FC:multiplicity>
 				<S100FC:attribute ref="sourceRegistryNumber"/>
 			</S100FC:attributeBinding>
-			<S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
 					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
