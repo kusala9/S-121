@@ -70,7 +70,7 @@
 	       14. We don't need fixed date range. we have startLifespan/endLifespan in all features.
 	       15. Open question - I don't use isAbstract="false", should I?
 	       16. BAU - added featureName to allow multi-lingual Names to BAUs. should we drop basicAdministrativeUnitName?
-	       17. Added Start Lifespan / End lifespan in BAU and Governance
+	       17. Added Start Lifespan / End lifespan in BAU and Governance. Also Party and RRR information types.
 	       
 	       
 		 -->
@@ -1605,6 +1605,20 @@
 					<S100Base:lower>0</S100Base:lower>
 					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
 				</S100FC:multiplicity>
+				<S100FC:attribute ref="startLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="endLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
 				<S100FC:attribute ref="categoryOfRight"/>
 			</S100FC:attributeBinding>
 			<S100FC:attributeBinding sequential="false">
@@ -1656,6 +1670,20 @@
 					<S100Base:lower>0</S100Base:lower>
 					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
 				</S100FC:multiplicity>
+				<S100FC:attribute ref="startLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="endLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
 				<S100FC:attribute ref="categoryOfRestriction"/>
 			</S100FC:attributeBinding>
 			<S100FC:attributeBinding sequential="false">
@@ -1702,6 +1730,20 @@
 			<S100FC:name>Responsibility</S100FC:name>
 			<S100FC:definition>Responsibility</S100FC:definition>
 			<S100FC:code>Responsibility</S100FC:code>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="startLifespan"/>
+			</S100FC:attributeBinding>
+			<S100FC:attributeBinding sequential="false">
+				<S100FC:multiplicity>
+					<S100Base:lower>0</S100Base:lower>
+					<S100Base:upper xsi:nil="false" infinite="false">1</S100Base:upper>
+				</S100FC:multiplicity>
+				<S100FC:attribute ref="endLifespan"/>
+			</S100FC:attributeBinding>
 			<S100FC:attributeBinding sequential="false">
 				<S100FC:multiplicity>
 					<S100Base:lower>0</S100Base:lower>
@@ -1955,6 +1997,10 @@
 				<S100FC:informationType ref="PartyMember"/>
 			</S100FC:informationBinding>
 		</S100FC:S100_FC_InformationType>
+		
+		
+		
+		
 		<S100FC:S100_FC_InformationType>
 			<S100FC:name>Party Member</S100FC:name>
 			<S100FC:definition>Party Member or members which share equal percentages of the Party roles</S100FC:definition>
@@ -4888,7 +4934,7 @@
 		  </S100FC:featureBinding>
 			<S100FC:permittedPrimitives>point</S100FC:permittedPrimitives>
 		</S100FC:S100_FC_FeatureType>
-		<!-- end of simple point features -->
+
 
 		<!-- Surface Types -->
 		<S100FC:S100_FC_FeatureType>
