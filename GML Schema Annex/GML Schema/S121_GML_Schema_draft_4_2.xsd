@@ -29,7 +29,12 @@
     <!-- From GML Schema in S-100 Edition 4.0.1 -->
     <!--                                        -->
     <!-- Updates.                               -->
-    <!--                                        -->
+    <!--
+        This Schema is derived from the OGC Pilot schema with minor changes prior to its inclusion in 
+        IHO S-121 v.1.1.0.
+        
+        
+    -->
 
 
     <!-- base types for all features in this data product -->
@@ -633,7 +638,8 @@
                     <xs:element name="sourceType" type="xs:string" minOccurs="0"/>
                     <xs:element name="sourceSubmissionDate" type="xs:date" minOccurs="0"/>
                     <xs:element name="sourceRecordationDate" type="xs:date" minOccurs="0"/>
-                    <xs:element minOccurs="0" name="sourceOf" type="gml:ReferenceType">
+                    <xs:element minOccurs="0" name="sourceOf" type="gml:ReferenceType"
+                        maxOccurs="unbounded">
                         <xs:annotation>
                             <xs:documentation>binding between the source information type and its defining geographic feature(s)</xs:documentation>
                         </xs:annotation>
@@ -642,11 +648,6 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:simpleType name="basicAdministrativeUnitTypeType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Maritime Limits and Boundaries"/>
-        </xs:restriction>
-    </xs:simpleType>
     <!--    <xs:complexType name="InfofeatureNameType">
         <xs:sequence>
             <xs:element minOccurs="0" name="displayName" type="xs:boolean"/>
@@ -863,6 +864,11 @@
 </xs:documentation>
         </xs:annotation>
     </xs:element>
+    <xs:simpleType name="basicAdministrativeUnitTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Maritime Limits and Boundaries"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:element name="BasicAdministrativeUnit" type="bauType"/>
     <xs:element name="Right" type="rightType"/>
     <xs:element name="Restriction" type="restrictionType"/>
